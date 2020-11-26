@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-const PlugAPI = require('plugapi');
 
 const parseNightbotChannel = (channelParams: string) => {
     const params = new URLSearchParams(channelParams);
@@ -32,10 +31,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     );
   
     const user = parseNightbotUser(req.headers['nightbot-user'] as string);
-    const bot = new PlugAPI();
-    bot.connect('yeatle');
-    var media= bot.getMedia();
-    console.log(`${media.title}`);
   
     res
       .status(200)
