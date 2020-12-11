@@ -1,40 +1,20 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+const PlugApi = require('../dist');
+const config = require('./config.json');
 
-const parseNightbotChannel = (channelParams: string) => {
-    const params = new URLSearchParams(channelParams);
-  
-    return {
-      name: params.get('name'),
-      displayName: params.get('displayName'),
-      provider: params.get('provider'),
-      providerId: params.get('providerId')
-    };
-  };
-  
-  const parseNightbotUser = (userParams: string) => {
-    const params = new URLSearchParams(userParams);
-  
-    return {
-      name: params.get('name'),
-      displayName: params.get('displayName'),
-      provider: params.get('provider'),
-      providerId: params.get('providerId'),
-      userLevel: params.get('userLevel')
-    };
-  };
+const plugApi = new PlugApi();
 
-  // ping.ts
+(async () => {
+  try {
+    // Login and visit room
+    await plugApi.connect(config);
 
-export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const channel = parseNightbotChannel(
-      req.headers['nightbot-channel'] as string
-    );
-  
-    const user = parseNightbotUser(req.headers['nightbot-user'] as string);
-  
-    res
-      .status(200)
-      .send(
-        `Hello! Your username is ${user.displayName} and the current channel is ${channel.displayName}.`
-      );
+    console.log(`Connected to room: ${config.roomId}`);
+
+    // Handle CHAT events
+    plugApi.on('CHAT', data => {
+      console.log(data);
+    });
+  } catch (err) {
+    console.log(`Error setting up api: ${err}`);
   }
+})();

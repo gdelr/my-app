@@ -10,13 +10,31 @@
   "dependencies": {
     "next": "latest",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "auto-bind": "^2.1.1",
+    "chalk": "^2.3.2",
+    "deasync": "^0.1.15",
+    "eventemitter3": "^4.0.0",
+    "got": "^9.6.0",
+    "handle-errors": "^1.0.0",
+    "jethro": "^4.4.3",
+    "p-retry": "^4.1.0",
+    "plug-message-split": "^1.0.1",
+    "tough-cookie": "^3.0.1",
+    "ws": "^7.1.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
-    "typescript": "4.0"
+    "typescript": "4.0",
+    "documentation": "^12.1.2",
+    "eslint-config-thedark1337": "^5.0.0",
+    "mocha": "^6.2.1",
+    "mocha-eslint": "^5.0.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
   },
   "license": "MIT"
 }
